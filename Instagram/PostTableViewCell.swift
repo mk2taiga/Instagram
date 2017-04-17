@@ -31,11 +31,13 @@ class PostTableViewCell: UITableViewCell {
     func setPostData(postData: PostData) {
         self.postImageView.image = postData.image
         //コメントを取り出す
-        self.captionLabel.text = "\(postData.name!) : \(postData.caption!)"
         if postData.comments.count > 0 {
-        for comment in postData.comments {
-        self.captionLabel.text = "\(postData.name!) : \(postData.caption!)\n\n\("(コメント)")\n\(comment)"
+            self.captionLabel.text = "\(postData.name!) : \(postData.caption!)\n\n\("(コメント)")"
+            for comment in postData.comments {
+                self.captionLabel.text! += "\n\(comment)"
             }
+        }else {
+            self.captionLabel.text = "\(postData.name!) : \(postData.caption!)"
         }
         let likeNumber = postData.likes.count
         likeLabel.text = "\("いいね ! ")\(likeNumber)\("件")"
